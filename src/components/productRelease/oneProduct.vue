@@ -3,7 +3,7 @@
     <h2 style="font-weight: 100;font-size: 22px;">第一步：选择产品基础信息</h2>
     <el-form ref="form" :model="form" class="form-box-1" label-width="120px">
       <el-form-item label="出租方式">
-        <el-select v-model="form.stype" placeholder="请选择出租方式">
+        <el-select v-model="form.stype" placeholder="请选择出租方式" @change="changeselectType">
           <el-option label="整租" value="all"></el-option>
           <el-option label="合租" value="add"></el-option>
         </el-select>
@@ -15,6 +15,10 @@
         <el-input class="input_address" v-model="form.address1" placeholder="审批人"></el-input><span class="address-label">栋</span>
         <el-input class="input_address" v-model="form.address2" placeholder="审批人"></el-input><span class="address-label">层</span>
         <el-input class="input_address" v-model="form.address3" placeholder="审批人"></el-input><span class="address-label">门牌号</span>
+      </el-form-item>
+      <el-form-item label="室" v-if="selectType">
+        <el-input class="input_address" v-model="form.address1" placeholder="审批人"></el-input><span class="address-label">共几室</span>
+        <el-input class="input_address" v-model="form.address2" placeholder="审批人"></el-input><span class="address-label">所在室</span>
       </el-form-item>
       <el-form-item label="所在区域">
         <div class="block">
@@ -81,19 +85,19 @@ export default {
             }
           ]
         }, {
-          value: 'chongqing',
+          value: '重庆',
           label: '重庆',
           children: [
             {
-              value: 'yubei',
-              label: '渝北',
+              value: '重庆',
+              label: '重庆',
               children: [
                 {
-                  value: 'yizhi',
-                  label: '一致'
+                  value: '渝北',
+                  label: '渝北'
                 }, {
-                  value: 'fankui',
-                  label: '反馈'
+                  value: '渝中',
+                  label: '渝中'
                 }
               ]
             }, {
@@ -112,7 +116,8 @@ export default {
           ]
         }
       ],
-      selectedOptions: []
+      selectedOptions: [],
+      selectType: false
     }
   },
   props: ['stepone'],
@@ -121,6 +126,7 @@ export default {
       var datas = this.form
       datas.eare = this.selectedOptions.slice(0, 3)
       this.$store.step = 'two'
+      this.$store.oneData = datas
       this.$emit('listindatasone', this.$store.step)
       console.log(datas)
       // axios.post('', datas)
@@ -133,6 +139,14 @@ export default {
     },
     handleChange (value) {
       this.selectedOptions = value
+    },
+    changeselectType () {
+      var stype = this.form.stype
+      if (stype === 'all') {
+        this.selectType = false
+      } else {
+        this.selectType = true
+      }
     }
   }
 }

@@ -39,18 +39,14 @@ export default {
   methods: {
     showStepone () {
       this.step = this.$store.step
-      alert(this.step)
     },
     showSteptwo () {
-      alert(this.$store.step)
       this.step = this.$store.step
     },
     showStepthree () {
-      alert(this.$store.step)
       this.step = this.$store.step
     },
     goFirstStep () {
-      alert('afs')
       this.step = 'one'
     }
   }

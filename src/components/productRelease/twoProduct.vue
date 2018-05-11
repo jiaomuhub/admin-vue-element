@@ -87,8 +87,18 @@
         <div class="two-title">
           位置及小区信息
         </div>
-        <div ref="form" :model="form" label-width="120px" class="form-box-3">
-
+        <div class="gis-box">
+          <div class="gis-item"><i class="el-icon-location-outline"></i>{{ form.num4.address }}</div>
+          <div id="map_container" tabindex="0"></div>
+          <div class ='panel'>
+            <div id = 'map-message'></div>
+          </div>
+          <div class="clear-box"></div>
+          <div class="gis-item">小区信息</div>
+          <div class="gis-item">小区性质： <span>{{ form.num4.properties }}</span> &emsp;&emsp;&emsp;建筑类型： <span>{{ form.num4.type }}</span></div>
+          <div class="gis-item">建筑年代： <span>{{ form.num4.date }}</span> &emsp;&emsp;&emsp;物业费： <span>{{ form.num4.Property }}</span></div>
+          <div class="gis-item">绿化率： <span>{{ form.num4.green }}</span> &emsp;&emsp;&emsp;容积率： <span>{{ form.num4.volume }}</span></div>
+          <div class="tips-feature gis-item"><span><i class="fa fa-lightbulb-o" aria-hidden="true"></i>若小区信息有误，可以尝试上报给我们小区信息有误</span></div>
         </div>
         <el-form-item style="text-align: center">
           <el-button size="medium" class="submitRoomBtn" type="primary" @click="goBackStep"  style="margin-left: 52px">上一步</el-button>
@@ -99,6 +109,7 @@
 </template>
 
 <script>
+  import AMap from 'AMap'
   export default {
     name: 'two-product',
     props: ['stepone'],
@@ -136,6 +147,16 @@
             s_chk12: '',
             s_chk13: '',
             s_chk14: ''
+          },
+          num4: {
+            address: '',
+            properties: '',
+            type: '',
+            date: '',
+            Property: '',
+            green: '',
+            volume: '',
+            newInfo: ''
           }
         },
         activeIndex: '1',
@@ -167,6 +188,57 @@
       },
       beforeRemove (file, fileList) {
         // return this.$confirm(`确定移除 ${ file.name }？`);
+      },
+      renderMap () {
+        // var oneData = this.$store.oneData
+        // var address = oneData.eare[0] + '省' + oneData.eare[1] + '市' + oneData.eare[2] + '区' + oneData.name
+        var map = new AMap.Map('map_container', {
+          resizeEnable: true,
+          zoom: 13,
+          center: [106.554865, 29.555792]
+        })
+        AMap.plugin('AMap.Geocoder', function () {
+          var geocoder = new AMap.Geocoder({
+            city: '023'
+          })
+          var marker = new AMap.Marker({
+            map: map,
+            bubble: true
+          })
+          // geocoder.getLocation(address, function (status, result) {
+          //   console.log(status, result)
+          //   if (status === 'complete' && result.info === 'OK') {
+          //     this.form.num4 = {
+          //
+          //     }
+          //   } else {
+          //     console.log(result)
+          //   }
+          // })
+          var message = document.getElementById('map-message')
+          map.on('click', function (e) {
+            marker.setPosition(e.lnglat)
+            geocoder.getAddress(e.lnglat, function (status, result) {
+              if (status === 'complete') {
+                console.log(result)
+                message.innerHTML = ''
+              } else {
+                message.innerHTML = '无法获取地址'
+              }
+            })
+          })
+        })
+      }
+    },
+    watch: {
+      stepone () {
+        var oneData = this.$store.oneData
+        if (this.stepone === 'two') {
+          this.$nextTick(function () {
+            this.renderMap()
+          })
+          console.log(this.$store.oneData)
+        }
       }
     }
   }
@@ -218,5 +290,41 @@
   .submitRoomBtn {
     width: 200px;
     margin-left: -48px;
+  }
+  .gis-box {
+    margin: 20px;
+    background-color: #fff;
+    padding-bottom: 30px;
+  }
+  #map_container {
+    height: 300px;
+    width: 600px;
+    text-align: left;
+    padding: 20px 100px;
+    float: left;
+    margin-left: 100px;
+  }
+  .clear-box {
+    display:block;
+    clear:both;
+    content:"";
+    visibility:hidden;
+    height:0
+  }
+  .panel {
+    background-color: #ddf;
+    color: #333;
+    border: 1px solid silver;
+    box-shadow: 3px 4px 3px 0px silver;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    line-height: 20px;
+  }
+  .gis-item {
+    text-align: left;
+    padding: 20px 100px;
   }
 </style>
