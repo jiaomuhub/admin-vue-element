@@ -221,7 +221,13 @@
     name: 'product-detail',
     data () {
       return {
+        paramID: ''
       }
+    },
+    created () {
+      var param = this.$route.params.Id
+      this.paramID = param
+      console.log(param)
     },
     methods: {
       editRoomInfo () {
@@ -230,10 +236,11 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '修改成功!'
-          })
+          this.$router.push({name: 'home',params: {Id: '111111'}})
+          // this.$message({
+          //   type: 'success',
+          //   message: '修改成功!'
+          // })
         }).catch(() => {
           this.$message({
             type: 'info',

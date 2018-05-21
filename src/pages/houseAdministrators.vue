@@ -39,17 +39,40 @@
         </el-table-column>
       </el-table>
     </div>
-    <add-adminer :isShowModel="isShow" :isEdit="dataEdit" v-on:listinAddAdmin="addAdminer"></add-adminer>
+    <!--<add-adminer :isShowModel="isShow" :isEdit="dataEdit" v-on:listinAddAdmin="addAdminer"></add-adminer>-->
+    <el-dialog
+      title="添加管理员"
+      :visible.sync="dialogVisible"
+      width="30%"
+      center>
+      <span class="successModel">
+        <el-form ref="form" :model="addForm" label-width="100px" class="add-model-form">
+          <el-form-item label="房管员姓名">
+            <el-input v-model="addForm.housekeepername"></el-input>
+          </el-form-item>
+          <el-form-item label="使用联系方式">
+            <el-radio-group v-model="addForm.contactway" @change="changeTelOrPhone">
+              <el-radio label="手机"></el-radio>
+              <el-radio label="座机"></el-radio>
+            </el-radio-group>
+          </el-form-item>
+          <el-form-item label="房管员联系">
+            <span>{{addForm.telLebal}}</span><el-input v-model="addForm.tel" class="tel-model"></el-input>
+            <!--<span>座机</span><el-input v-model="addForm.phone" class="tel-model"></el-input>-->
+          </el-form-item>
+        </el-form>
+      </span>
+      <span slot="footer" class="dialog-footer">
+          <el-button @click="cancelAdd">取消</el-button>
+          <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-  import addAdminer from '@/components/addAdminer'
   export default {
     name: 'house-administrators',
-    components: {
-      addAdminer
-    },
     data () {
       return {
         tableData: [{
@@ -65,28 +88,50 @@
           number: '2016-05-02',
           handle: '查看详情'
         }],
+        addForm: {
+          housekeepername: '',
+          contactway: '手机',
+          telLebal: '手机',
+          tel: ''
+        },
         inputValue: '',
-        isShow: false,
-        dataEdit: ''
+        dialogVisible: false,
+        addOrEdit: ''
       }
     },
     methods: {
       addAdmin () {
-        this.isShow = true
-        this.addOrEdit = 'add'
-      },
-      addAdminer () {
-        this.isShow = this.$store.isShow
-        console.log(this.$store.rowData)
+        this.dialogVisible = true
       },
       handleEditClick (row) {
-        this.isShow = true
+        this.dialogVisible = true
+        this.addForm.housekeepername = row.name
+        this.addForm.contactway = row.tel
         this.dataEdit = row
-        console.log(this)
+        console.log(row)
       },
       handleDelClick (index, rows) {
         // 接口
         rows.splice(index, 1)
+      },
+      onSubmit () {
+        console.log(this.addForm)
+        var items = this.addForm
+        this.$store.rowData = this.addForm
+        this.dialogVisible = false
+        for (var item in items) {
+          items[item] = ''
+        }
+      },
+      cancelAdd () {
+        var items = this.addForm
+        this.dialogVisible = false
+        for (var item in items) {
+          items[item] = ''
+        }
+      },
+      changeTelOrPhone () {
+        this.addForm.telLebal = this.addForm.contactway
       }
     }
   }

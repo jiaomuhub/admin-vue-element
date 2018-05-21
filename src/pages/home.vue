@@ -7,9 +7,6 @@
         <el-breadcrumb-item>产品发布</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <!--<el-row>-->
-      <!--<el-col :span="24"><div class="grid-content bg-purple-dark">产品发布</div></el-col>-->
-    <!--</el-row>-->
     <product-one :stepone="step" v-on:listindatasone="showStepone"></product-one>
     <product-two :stepone="step" v-on:listindatastwo="showSteptwo"></product-two>
     <product-three :stepone="step" v-on:listindatasthree="showStepthree"></product-three>
@@ -38,7 +35,7 @@ export default {
   },
   methods: {
     showStepone () {
-      this.step = this.$store.step
+      this.step = this.$store.step;
     },
     showSteptwo () {
       this.step = this.$store.step
@@ -48,6 +45,9 @@ export default {
     },
     goFirstStep () {
       this.step = 'one'
+    },
+    fetchDate () {
+      alert('geibian')
     }
   }
 }

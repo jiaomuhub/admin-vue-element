@@ -12,7 +12,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '',
+      path: '/home',
       component: AppView,
       children: [
         {path: '/home', name: 'home', component: Home},

@@ -7,19 +7,19 @@
         </div>
         <div class="form-box-2">
           <el-form-item label="房屋户型">
-            <el-input class="input_address" v-model="form.num1.house_type1" placeholder=""></el-input><span class="address-label">室</span>
-            <el-input class="input_address" v-model="form.num1.house_type2" placeholder=""></el-input><span class="address-label">厅</span>
-            <el-input class="input_address" v-model="form.num1.house_type3" placeholder=""></el-input><span class="address-label">卫</span>
+            <el-input class="input_address" v-model="form.room" placeholder=""></el-input><span class="address-label">室</span>
+            <el-input class="input_address" v-model="form.hall" placeholder=""></el-input><span class="address-label">厅</span>
+            <el-input class="input_address" v-model="form.washroom" placeholder=""></el-input><span class="address-label">卫</span>
           </el-form-item>
           <el-form-item label="总面积">
-            <el-input class="input_address" v-model="form.num1.space" placeholder=""></el-input><span class="address-label">m</span>
+            <el-input class="input_address" v-model="form.acreage" placeholder=""></el-input><span class="address-label">m</span>
           </el-form-item>
           <el-form-item label="楼层">
-            <el-input class="input_address" v-model="form.num1.floor" placeholder=""></el-input><span class="address-label">所在楼层</span>
-            <el-input class="input_address" v-model="form.num1.all_floor" placeholder=""></el-input><span class="address-label">总共楼层</span>
+            <el-input class="input_address" v-model="form.storey" placeholder=""></el-input><span class="address-label">所在楼层</span>
+            <el-input class="input_address" v-model="form.total" placeholder=""></el-input><span class="address-label">总共楼层</span>
           </el-form-item>
           <el-form-item label="朝向">
-            <el-input v-model="form.num1.direction" class="input_address"></el-input>
+            <el-input v-model="form.orientation" class="input_address"></el-input>
           </el-form-item>
         </div>
 
@@ -58,32 +58,33 @@
         </div>
         <div class="form-box-3">
           <el-form-item label="产品特色">
-            <el-checkbox v-model="form.num3.f_chk1" label="首次出租" border></el-checkbox>
-            <el-checkbox v-model="form.num3.f_chk2" label="电梯房" border></el-checkbox>
-            <el-checkbox v-model="form.num3.f_chk3" label="新小区" border></el-checkbox>
-            <el-checkbox v-model="form.num3.f_chk4" label="大社区" border></el-checkbox>
-            <el-checkbox v-model="form.num3.f_chk5" label="可带宠物入住" border></el-checkbox>
+            <el-checkbox v-model="form.special.f_chk1" label="首次出租" border></el-checkbox>
+            <el-checkbox v-model="form.special.f_chk2" label="电梯房" border></el-checkbox>
+            <el-checkbox v-model="form.special.f_chk3" label="新小区" border></el-checkbox>
+            <el-checkbox v-model="form.special.f_chk4" label="大社区" border></el-checkbox>
+            <el-checkbox v-model="form.special.f_chk5" label="可带宠物入住" border></el-checkbox>
           </el-form-item>
           <div class="tips-feature"><span><i class="fa fa-lightbulb-o" aria-hidden="true"></i>我们建议按照房源的特色进行选择最有特色的项，如果没有可以不选择，最多选择4项</span></div>
           <el-form-item label="服务设施">
             <div class="server-box">
-              <el-checkbox v-model="form.num3.s_chk1" label="WIFI" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk2" label="暖气" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk3" label="燃气" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk4" label="空调" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk5" label="洗衣机" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk6" label="厨房" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk7" label="阳台" border class="server-item"></el-checkbox><br />
-              <el-checkbox v-model="form.num3.s_chk8" label="书桌" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk9" label="冰箱" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk10" label="电脑" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk11" label="地暖" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk12" label="沐浴" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk13" label="电子锁" border class="server-item"></el-checkbox>
-              <el-checkbox v-model="form.num3.s_chk14" label="电梯" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk1" label="WIFI" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk2" label="暖气" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk3" label="燃气" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk4" label="空调" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk5" label="洗衣机" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk6" label="厨房" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk7" label="阳台" border class="server-item"></el-checkbox><br />
+              <el-checkbox v-model="form.service.s_chk8" label="书桌" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk9" label="冰箱" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk10" label="电脑" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk11" label="地暖" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk12" label="沐浴" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk13" label="电子锁" border class="server-item"></el-checkbox>
+              <el-checkbox v-model="form.service.s_chk14" label="电梯" border class="server-item"></el-checkbox>
             </div>
           </el-form-item>
         </div>
+
         <div class="two-title">
           位置及小区信息
         </div>
@@ -116,37 +117,37 @@
     data () {
       return {
         form: {
-          num1: {
-            house_type1: '',
-            house_type2: '',
-            house_type3: '',
-            space: '',
-            floor: '',
-            all_floor: '',
-            direction: ''
-          },
+          room: '',
+          hall: '',
+          washroom: '',
+          acreage: '',
+          storey: '',
+          total: '',
+          orientation: '',
           num2: {
           },
-          num3: {
-            f_chk1: '',
-            f_chk2: '',
-            f_chk3: '',
-            f_chk4: '',
-            f_chk5: '',
-            s_chk1: '',
-            s_chk2: '',
-            s_chk3: '',
-            s_chk4: '',
-            s_chk5: '',
-            s_chk6: '',
-            s_chk7: '',
-            s_chk8: '',
-            s_chk9: '',
-            s_chk10: '',
-            s_chk11: '',
-            s_chk12: '',
-            s_chk13: '',
-            s_chk14: ''
+          special: {
+            f_chk1: false,
+            f_chk2: false,
+            f_chk3: false,
+            f_chk4: false,
+            f_chk5: false
+          },
+          service: {
+            s_chk1: false,
+            s_chk2: false,
+            s_chk3: false,
+            s_chk4: false,
+            s_chk5: false,
+            s_chk6: false,
+            s_chk7: false,
+            s_chk8: false,
+            s_chk9: false,
+            s_chk10: false,
+            s_chk11: false,
+            s_chk12: false,
+            s_chk13: false,
+            s_chk14: false
           },
           num4: {
             address: '',
@@ -160,15 +161,32 @@
           }
         },
         activeIndex: '1',
+        lataddlng: [106.554865, 29.555792],
         fileList: [{name: 'food.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}, {name: 'food2.jpeg', url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'}]
       }
     },
     methods: {
       onSubmit () {
-        var datas = this.form
-        this.$store.step = 'three'
-        this.$emit('listindatastwo', this.$store.step)
-        console.log(datas)
+        var datas = this.form, _f_chk = datas.special, _s_chk = datas.service,special = [],service = []
+        if (this.handleValidTwo(datas)) {
+          return false
+        } else {
+          for (let i in _f_chk) {
+            if(_f_chk[i] === true) {
+              special.push(i)
+            }
+          }
+          for (let k in _s_chk) {
+            if(_s_chk[k] === true) {
+              service.push(k)
+            }
+          }
+          datas.special = special
+          datas.service = service
+          console.log(datas)
+          this.$store.step = 'three'
+          this.$emit('listindatastwo', this.$store.step)
+        }
       },
       goBackStep () {
         this.$store.step = 'one'
@@ -189,13 +207,14 @@
       beforeRemove (file, fileList) {
         // return this.$confirm(`确定移除 ${ file.name }？`);
       },
-      renderMap () {
-        // var oneData = this.$store.oneData
-        // var address = oneData.eare[0] + '省' + oneData.eare[1] + '市' + oneData.eare[2] + '区' + oneData.name
+      renderMap (oneData) {
+        console.log(oneData)
+        var address = oneData.eare[0] +'市'+ oneData.eare[1] +'区' + oneData.name + oneData.address.address1 +'栋' + oneData.address.address2 +'层'+ oneData.address.address3 +'号';
+        var self = this
         var map = new AMap.Map('map_container', {
           resizeEnable: true,
           zoom: 13,
-          center: [106.554865, 29.555792]
+          center: self.lataddlng
         })
         AMap.plugin('AMap.Geocoder', function () {
           var geocoder = new AMap.Geocoder({
@@ -205,22 +224,31 @@
             map: map,
             bubble: true
           })
-          // geocoder.getLocation(address, function (status, result) {
-          //   console.log(status, result)
-          //   if (status === 'complete' && result.info === 'OK') {
-          //     this.form.num4 = {
-          //
-          //     }
-          //   } else {
-          //     console.log(result)
-          //   }
-          // })
+          geocoder.getLocation(address, function (status, result) {
+            console.log(status, result)
+            if (status === 'complete' && result.info === 'OK') {
+              self.lataddlng = [result.geocodes["0"].location.lng, result.geocodes["0"].location.lat]
+              map.setZoomAndCenter(14, self.lataddlng);
+              marker.setPosition(result.geocodes["0"].location)
+              geocoder.getAddress(result.geocodes["0"].location, function (status, result) {
+                if (status === 'complete') {
+                  message.innerHTML = ''
+                } else {
+                  message.innerHTML = '无法获取地址'
+                }
+              })
+              self.form.num4 = {
+                address: address,
+              }
+            } else {
+              console.log(result)
+            }
+          })
           var message = document.getElementById('map-message')
           map.on('click', function (e) {
             marker.setPosition(e.lnglat)
             geocoder.getAddress(e.lnglat, function (status, result) {
               if (status === 'complete') {
-                console.log(result)
                 message.innerHTML = ''
               } else {
                 message.innerHTML = '无法获取地址'
@@ -228,6 +256,46 @@
             })
           })
         })
+      },
+      handleValidTwo (_data) {
+        var _datas = _data, fchk = [], schk = []
+        // if (_data.room === '' || _data.hall === '' || _data.washroom === '') {
+        //   return this.$message.error('房屋户型不能为空')
+        // }
+        // if (isNaN(_data.room) || isNaN(_data.hall) || isNaN(_data.washroom) || isNaN(_data.acreage)) {
+        //   return this.$message.error('房屋户型只能是数字类型')
+        // }
+        // if (_data.acreage.length === 0 || isNaN(_data.acreage)) {
+        //   return this.$message.error('总面积只能是数字类型')
+        // }
+        // if (_data.storey.length === 0 || isNaN(_data.storey)) {
+        //   return this.$message.error('楼层只能是数字类型')
+        // }
+        // if (isNaN(_data.total)) {
+        //   return this.$message.error('总楼层只能是数字类型')
+        // }
+        // if (_data.orientation === '') {
+        //   return this.$message.error('朝向不能为空')
+        // }
+        // for (var i in _datas.special) {
+        //   if (_datas.special[i] === true) {
+        //
+        //     console.log(_datas.special[i])
+        //     fchk.push((_datas.special[i]).toString())
+        //   }
+        // }
+        // if (fchk.length === 0) {
+        //   return this.$message.error('请选择至少一项产品特色')
+        // }
+        // for (var k in _datas.service) {
+        //   if (_datas.service[k] === true) {
+        //     console.log(_datas.service[k])
+        //     schk.push((_datas.service[k]).toString())
+        //   }
+        // }
+        // if (schk.length === 0) {
+        //   return this.$message.error('请选择至少一项服务设施')
+        // }
       }
     },
     watch: {
@@ -235,9 +303,8 @@
         var oneData = this.$store.oneData
         if (this.stepone === 'two') {
           this.$nextTick(function () {
-            this.renderMap()
+            this.renderMap(this.$store.oneData)
           })
-          console.log(this.$store.oneData)
         }
       }
     }

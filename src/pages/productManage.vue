@@ -125,7 +125,7 @@
         console.log(this.formInline)
       },
       handleClick (row) {
-        this.$router.push({path: '/productDetail'})
+        this.$router.push({name: 'productDetail',params:{ Id: '2121312' }});
         console.log(row)
       },
       formatter (row, column) {
@@ -135,7 +135,7 @@
         return row.tag === value
       },
       filterHandler (value, row, column) {
-        const property = column['property']
+        const property = column['property'];
         return row[property] === value
       }
     }

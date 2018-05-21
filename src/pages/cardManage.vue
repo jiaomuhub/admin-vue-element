@@ -46,17 +46,34 @@
        </el-table-column>
      </el-table>
    </div>
-   <add-card :isShowCard="showCard" v-on:listinAddCard="addCardChange"></add-card>
+   <!--<add-card :isShowCard="showCard" v-on:listinAddCard="addCardChange"></add-card>-->
+   <el-dialog
+     title="预租劵使用录入"
+     :visible.sync="dialogCardVisible"
+     width="30%"
+     center>
+      <span class="successModel">
+        <el-form ref="form" :model="addForm" label-width="100px" class="add-card-form">
+        <el-form-item label="免租劵序号">
+          <el-input v-model="addForm.num"></el-input>
+        </el-form-item>
+      </el-form>
+      </span>
+     <span slot="footer" class="dialog-footer">
+          <el-button @click="cancelAdd">取消</el-button>
+          <el-button type="primary" @click="onSubmit">确定录入</el-button>
+        </span>
+   </el-dialog>
  </div>
 </template>
 
 <script>
-  import addCard from '@/components/addCard'
+  // import addCard from '@/components/addCard'
   export default {
     name: 'card-manage',
-    components: {
-      addCard
-    },
+    // components: {
+    //   addCard
+    // },
     data () {
       return {
         tableData: [{
@@ -76,18 +93,36 @@
           money: '3600',
           handle: '查看详情'
         }],
-        showCard: false
+        addForm: {
+          num: ''
+        },
+        dialogCardVisible: false
       }
     },
     methods: {
       addCard () {
-        this.showCard = true
+        this.dialogCardVisible = true
       },
       handleDetailClick () {
         this.$router.push({path: '/cardDetail'})
       },
-      addCardChange () {
-        this.showCard = this.$store.showCard
+      // addCardChange () {
+      //   this.showCard = this.$store.showCard
+      // },
+      onSubmit () {
+        console.log(this.addForm)
+        var items = this.addForm
+        this.dialogCardVisible = false
+        for (var item in items) {
+          items[item] = ''
+        }
+      },
+      cancelAdd () {
+        var items = this.addForm
+        this.dialogCardVisible = false
+        for (var item in items) {
+          items[item] = ''
+        }
       }
     }
   }
