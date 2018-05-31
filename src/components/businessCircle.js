@@ -1,5 +1,33 @@
 var business_circle = [
   {
+    value: '解放碑',
+    label: '解放碑'
+  },
+  {
+    value: '观音桥',
+    label: '观音桥'
+  },
+  {
+    value: '南坪',
+    label: '南坪'
+  },
+  {
+    value: '朝天门',
+    label: '朝天门'
+  },
+  {
+    value: '杨家坪',
+    label: '杨家坪'
+  },
+  {
+    value: '三峡广场',
+    label: '三峡广场'
+  },
+  {
+    value: '大坪',
+    label: '大坪'
+  },
+  {
     value: '奥体中心',
     label: '奥体中心'
   }, {
@@ -32,9 +60,6 @@ var business_circle = [
   },{
     value: '蔡家',
     label: '蔡家'
-  }, {
-    value: '朝天门',
-    label: '朝天门'
   },{
     value: '茶园新区',
     label: '茶园新区'
@@ -60,9 +85,6 @@ var business_circle = [
     value: '大足',
     label: '大足'
   },{
-    value: '大坪',
-    label: '大坪'
-  }, {
     value: '大石坝',
     label: '大石坝'
   },{
@@ -104,9 +126,6 @@ var business_circle = [
   },{
     value: '钢铁支路',
     label: '钢铁支路'
-  },{
-    value: '观音桥',
-    label: '观音桥'
   }, {
     value: '工人村',
     label: '工人村'
@@ -152,9 +171,6 @@ var business_circle = [
   },{
     value: '界石',
     label: '界石'
-  },{
-    value: '解放碑',
-    label: '解放碑'
   },{
     value: '金源路',
     label: '金源路'
@@ -219,9 +235,6 @@ var business_circle = [
     value: '南桥寺',
     label: '南桥寺'
   },{
-    value: '南坪',
-    label: '南坪'
-  },{
     value: '南山',
     label: '南山'
   },{
@@ -282,9 +295,6 @@ var business_circle = [
     value: '上新街',
     label: '上新街'
   },{
-    value: '三峡广场',
-    label: '三峡广场'
-  }, {
     value: '双碑',
     label: '双碑'
   },{
@@ -401,9 +411,6 @@ var business_circle = [
   }, {
     value: '渝州路',
     label: '渝州路'
-  },{
-    value: '杨家坪',
-    label: '杨家坪'
   }, {
     value: '忠县',
     label: '忠县'

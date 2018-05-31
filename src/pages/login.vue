@@ -28,12 +28,13 @@
 </template>
 <script>
 import {mapActions} from 'vuex'
+import axios from 'axios';
 export default {
   name: 'login',
   data () {
     return {
-      username: 'Administrator',
-      password: '123456',
+      username: '',
+      password: '',
       isLoging: false,
       author: window.APP_INFO.author,
       version: window.APP_INFO.version,
@@ -43,18 +44,47 @@ export default {
   methods: {
     ...mapActions(['login']),
     handleLogin () {
-      if (!this.username || !this.password) {
-        return this.$message.warning('用户名和密码不能为空')
+      var self = this
+      if (!self.username || !self.password) {
+        return self.$message.warning('用户名和密码不能为空')
       }
-      this.isLoging = true
-      this.login({
-        username: this.username,
-        password: this.password
-      }).then(res => {
-        this.$message.success('登录成功')
-        this.$router.push({name: 'home'})
-        this.isLoging = false
-      })
+      self.isLoging = true
+      var datas = {
+        username: self.username,
+        password: self.password
+      }
+      axios.post(wy_host+ 'supply/login/', datas)
+        .then(function (res) {
+          console.log(res)
+          if(res.status == 200) {
+            self.login(datas)
+              .then(res => {
+              self.$message.success('登录成功')
+              self.$router.push({name: 'home'})
+              self.isLoging = false
+            })
+          }else{
+            return self.$message.error(res.msg)
+            self.isLoging = false
+          }
+        })
+        .catch(function (err) {
+          return self.$message.error(err.msg)
+          self.isLoging = false
+        })
+      // self.isLoging = true
+      // self.$store.state.self = self
+      // self.$store.state.userData = datas
+      // this.login({
+      //   username: this.username,
+      //   password: this.password
+      // })
+      //   .then(res => {
+      //   // alert(res)
+      //   // this.$message.success('登录成功')
+      //   // this.$router.push({name: 'home'})
+      //   // this.isLoging = false
+      // })
     }
   }
 }

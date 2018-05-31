@@ -8,7 +8,7 @@ const menus = [
       {id: 'proManger', path: '/proManger', name: 'proManger', label: '产品管理'},
       {id: 'houseManage', path: '/houseManage', name: 'houseManage', label: '看房管理'},
       {id: 'houseAdministrators', path: '/houseAdministrators', name: 'houseAdministrators', label: '房管员管理'},
-      {id: 'cardManage', path: '/cardManage', name: 'cardManage', label: '免租券管理'}
+      // {id: 'cardManage', path: '/cardManage', name: 'cardManage', label: '免租券管理'}
     ]
   },
   {

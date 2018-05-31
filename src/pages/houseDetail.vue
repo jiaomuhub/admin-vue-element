@@ -16,16 +16,16 @@
         <el-row :gutter="20">
           <el-col :span="4">
             <div class="grid-content bg-purple">
-              <img src="../assets/logo.png" alt="頭像">
+              <img :src="detailData.picUrl" :style="{'width':'236px','height': '236px'}" alt="頭像">
             </div>
           </el-col>
           <el-col :span="16">
             <div class="grid-content bg-purple room-detail">
-              <p>紫荆商业广场1室1厅 2-21-5</p>
-              <p>1室1厅 100m</p>
-              <p class="money-p">￥2000/月 &emsp; &emsp;&emsp;&emsp; 待看房</p>
-              <p><i class="el-icon-location-outline"></i>渝北</p>
-              <p class="feater-p"><span>首次出租</span><span>独立卫生间</span><span>带阳台</span></p>
+              <p>{{detailData.title}}</p>
+              <p>{{detailData.info}}m</p>
+              <p class="money-p">￥{{detailData.price}}/月 &emsp; &emsp;&emsp;&emsp; {{detailData.status}}</p>
+              <p><i class="el-icon-location-outline"></i>{{detailData.location}}</p>
+              <p class="feater-p"><span v-for="item in detailData.special" :key="item.code">{{item.name}}</span></p>
             </div>
           </el-col>
         </el-row>
@@ -38,11 +38,11 @@
       <el-row :gutter="20">
         <el-col :span="20">
           <div class="grid-content bg-purple room-detail">
-            <p>姓名：刘沛鑫</p>
-            <p>称呼：先生</p>
-            <p>手机号：13752899357</p>
-            <p>期望看房时间：2017-08-20 早上</p>
-            <p>看房留言：希望房东尽快接待，另外提供停车位</p>
+            <p>姓名：{{detailData.name}}</p>
+            <p>称呼：{{detailData.sex}}</p>
+            <p>手机号：{{detailData.phone}}</p>
+            <p>期望看房时间：{{detailData.viewingTime}}</p>
+            <p>看房留言：{{detailData.basicInfo}}</p>
           </div>
         </el-col>
       </el-row>
@@ -55,7 +55,32 @@
 
 <script>
   export default {
-    name: 'house-detail'
+    name: 'house-detail',
+    data () {
+      return {
+        detailData: {}
+      }
+    },
+    mounted () {
+      let self = this;
+      let datas = self.$store.state.houseDetailData;
+      self.$nextTick(function () {
+        if(datas.status == '1') {
+          datas.status = '已看房'
+        }
+        if(datas.status == '2') {
+          datas.status = '待看房'
+        }
+        datas.special = JSON.parse(datas.special);
+        if(datas.sex == '1') {
+          datas.sex = '先生'
+        }else{
+          datas.sex = '女士'
+        }
+        self.detailData = datas;
+        console.log(datas)
+      })
+    }
   }
 </script>
 

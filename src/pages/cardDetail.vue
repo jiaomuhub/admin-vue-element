@@ -9,7 +9,7 @@
     </div>
     <h2 style="font-weight: 100;font-size: 22px;text-align: center;">预租劵使用信息详细</h2>
     <div class="card-detail">
-      <el-form ref="form" :model="formData" label-width="40%">
+      <el-form ref="form" :model="formData" label-width="100px">
         <el-form-item label="免租劵序号">
           <span>ABCD12346EDS</span>
           <!--<el-input v-model="formData.num" class="resust-input"></el-input>-->
@@ -31,8 +31,8 @@
           <!--<el-input v-model="formData.num" class="resust-input"></el-input>-->
         </el-form-item>
         <el-form-item label="月租金">
-          <span>￥1500</span>
-          <!--<el-input v-model="formData.num" class="resust-input"></el-input>-->
+          <span  v-show="!hideMoney">￥1500</span>
+          <el-input v-show="hideMoney" v-model="formData.num" placeholder="3000" class="resust-input"></el-input>
         </el-form-item>
         <el-form-item label="免租劵折扣信息">
           <div class="detail-info">
@@ -56,8 +56,8 @@
           <!--<el-input v-model="formData.num" class="resust-input"></el-input>-->
         </el-form-item>
         <el-form-item class="btn-control">
-          <el-button>取消</el-button>
-          <el-button type="primary" @click="onSubmit">确定</el-button>
+          <el-button @click="onHandleCancel">{{ hideMoney ? '取消': '返回' }}</el-button>
+          <el-button v-show="hideMoney" type="primary" @click="onHandleSubmit">确定</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -71,7 +71,29 @@
       return {
         formData: {
           num: ''
-        }
+        },
+        hideMoney: false
+      }
+    },
+    mounted () {
+      var delId = this.$route.params.Id;
+      var status = this.$route.params.status;
+      console.log(delId,status)
+      if(status === 'add') {
+        this.hideMoney = true
+      }
+      if(status === 'detail') {
+        this.hideMoney = false
+      }
+    },
+    methods: {
+      onHandleCancel () {
+        this.$router.push({path: '/cardManage'})
+      },
+      onHandleSubmit () {
+        let data = this.formData.num
+        alert(data)
+        this.$router.push({path: '/cardManage'})
       }
     }
   }
@@ -80,7 +102,7 @@
 <style scoped>
   .card-detail {
     margin: 20px;
-    padding: 20px;
+    padding: 20px 100px;
     background-color: #fff;
   }
   .card-detail span{
@@ -92,6 +114,13 @@
     width: 50%;
   }
   .btn-control {
-    margin-left: 40px;
+    text-align: center;
+  }
+  .btn-control button {
+    width: 100px;
+  }
+  .resust-input {
+    width: 200px;
+    margin-left: 22px;
   }
 </style>

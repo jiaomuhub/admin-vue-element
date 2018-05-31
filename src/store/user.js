@@ -1,5 +1,5 @@
-// import Vue from 'vue'
-
+import Vue from 'vue'
+import  axios from 'axios'
 const state = {
   user: null,
   isLogin: false

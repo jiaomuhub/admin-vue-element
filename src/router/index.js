@@ -21,8 +21,8 @@ export default new Router({
         {path: '/houseManage', name: 'houseManage', component: page('houseManage')},
         {path: '/houseDetail', name: 'houseDetail', component: page('houseDetail')},
         {path: '/houseAdministrators', name: 'houseAdministrators', component: page('houseAdministrators')},
-        {path: '/cardManage', name: 'cardManage', component: page('cardManage')},
-        {path: '/cardDetail', name: 'cardDetail', component: page('cardDetail')},
+        // {path: '/cardManage', name: 'cardManage', component: page('cardManage')},
+        // {path: '/cardDetail', name: 'cardDetail', component: page('cardDetail')},
         {path: '/companyInfo', name: 'companyInfo', component: page('companyInfo')},
         {path: '/contactUs', name: 'contactUs', component: page('contactUs')},
         {path: '/404', name: '404', component: page('404')},
@@ -35,6 +35,12 @@ export default new Router({
     {path: '/home-login', name: 'p-login', component: page('home-login')},
     {path: '/register', name: 'p-register', component: page('register')},
     {path: '/keyboard', name: 'p-keyboard', component: page('c-keyboard')},
+    {
+      path: '/empty',
+      name: 'empty',
+      redirect: '/home',
+      component: page('c-keyboard')
+    },
     {path: '*', redirect: {name: '404'}}
   ]
 })

@@ -54,7 +54,8 @@ Vue.use(MBackTop)
 Vue.use(MLoader)
 Vue.use(MContainer)
 
-
+window.wy_host = 'http://192.168.0.118:8080/'
+// window.wy_host = 'http://192.168.0.134/'
 var whiteList = ['demo', 'login']
 router.beforeEach((to, from, next) => {
   NProgress.start()
@@ -83,7 +84,7 @@ Axios.defaults.validateStatus = status => {
 // 设置请求token
 Axios.interceptors.request.use(config => {
   var token = sessionStorage.getItem('token')
-  config.headers['Authorization'] = 'Bearer ' + token
+  // config.headers['Authorization'] = 'Bearer ' + token
   // console.log(config)
   return config
 })
@@ -111,7 +112,7 @@ Axios.interceptors.response.use(res => {
   return Promise.reject(err)
 })
 
-
+Axios.defaults.withCredentials=true
 Vue.prototype.$http = Axios
 Vue.http = Axios
 

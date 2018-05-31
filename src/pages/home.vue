@@ -7,7 +7,7 @@
         <el-breadcrumb-item>产品发布</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <product-one :stepone="step" v-on:listindatasone="showStepone"></product-one>
+    <product-one :stepone="step" v-on:listindatasone="showStepone" ref="refStepone"></product-one>
     <product-two :stepone="step" v-on:listindatastwo="showSteptwo"></product-two>
     <product-three :stepone="step" v-on:listindatasthree="showStepthree"></product-three>
   </center>
@@ -32,6 +32,10 @@ export default {
     productOne,
     productTwo,
     productThree
+  },
+  mounted () {
+    console.log('asdws');
+    console.log(this);
   },
   methods: {
     showStepone () {

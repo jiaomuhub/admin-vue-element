@@ -41,7 +41,7 @@
          label="操作"
          width="100">
          <template slot-scope="scope">
-           <el-button @click="handleDetailClick()" type="text" size="small">查看详情</el-button>
+           <el-button @click="handleDetailClick(scope.row)" type="text" size="small">查看详情</el-button>
          </template>
        </el-table-column>
      </el-table>
@@ -68,12 +68,9 @@
 </template>
 
 <script>
-  // import addCard from '@/components/addCard'
+  import axios from 'axios';
   export default {
     name: 'card-manage',
-    // components: {
-    //   addCard
-    // },
     data () {
       return {
         tableData: [{
@@ -99,23 +96,39 @@
         dialogCardVisible: false
       }
     },
+    mounted () {
+      let self = this;
+      self.$nextTick(function () {
+        axios.get(wy_host+ 'supply/voucher_list')
+          .then(function (res) {
+            console.log(res)
+          })
+          .catch(function (err) {
+            console.log(err)
+          })
+      })
+    },
     methods: {
       addCard () {
         this.dialogCardVisible = true
       },
-      handleDetailClick () {
-        this.$router.push({path: '/cardDetail'})
+      handleDetailClick (row) {
+        console.log(row.num)
+        this.$router.push({name: 'cardDetail',params:{ Id: row.num, status: 'detail' }})
       },
-      // addCardChange () {
-      //   this.showCard = this.$store.showCard
-      // },
       onSubmit () {
-        console.log(this.addForm)
-        var items = this.addForm
-        this.dialogCardVisible = false
-        for (var item in items) {
-          items[item] = ''
-        }
+        let self = this;
+        var items = self.addForm;
+        axios.get(wy_host +'supply/voucher_serialNum/'+ items.num)
+          .then(function (res) {
+            console.log(res);
+            self.dialogCardVisible = false;
+            self.$router.push({name: 'cardDetail',params:{ Id: items.num, status: 'add' }});
+            self.addForm.num = ''
+          })
+          .catch(function (err) {
+            console.log(err)
+          });
       },
       cancelAdd () {
         var items = this.addForm
